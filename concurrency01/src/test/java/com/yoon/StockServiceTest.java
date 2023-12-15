@@ -2,6 +2,7 @@ package com.yoon;
 
 import com.yoon.domain.Stock;
 import com.yoon.repository.StockRepository;
+import com.yoon.service.PessimisticLockStockService;
 import com.yoon.service.StockService;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
@@ -21,7 +22,7 @@ public class StockServiceTest {
     private static final long PRODUCT_ID = 1L;
 
     @Autowired
-    private StockService sut;
+    private PessimisticLockStockService sut;
 
     @Autowired
     private StockRepository stockRepository;
