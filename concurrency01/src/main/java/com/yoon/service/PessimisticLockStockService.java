@@ -15,11 +15,11 @@ public class PessimisticLockStockService {
     }
 
     @Transactional
-    public void decrease(Long id, Long quantity){
+    public void decrease(Long id, Long quantity) {
         Stock stock = stockRepository.findByIdWithPessimisticLock(id);
 
         stock.decrease(quantity);
 
-        stockRepository.save(stock);
+        stockRepository.saveAndFlush(stock);
     }
 }

@@ -2,8 +2,7 @@ package com.yoon;
 
 import com.yoon.domain.Stock;
 import com.yoon.repository.StockRepository;
-import com.yoon.service.OptimisticLockStockFacade;
-import com.yoon.service.PessimisticLockStockService;
+import com.yoon.facade.OptimisticLockStockFacade;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

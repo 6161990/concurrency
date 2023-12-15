@@ -1,8 +1,9 @@
-package com.yoon.service;
+package com.yoon.facade;
 
-import org.springframework.stereotype.Service;
+import com.yoon.service.OptimisticLockStockService;
+import org.springframework.stereotype.Component;
 
-@Service
+@Component
 public class OptimisticLockStockFacade {
 
     private final OptimisticLockStockService optimisticLockStockService;
