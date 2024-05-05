@@ -1,4 +1,4 @@
 rootProject.name = 'concurrency'
 
 include 'stock-concurrency'
-include 'redis-compare-concurrency-with-db'
+include 'redis-compare-lock-with-db'
