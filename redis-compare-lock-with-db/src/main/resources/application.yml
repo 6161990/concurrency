@@ -8,7 +8,7 @@ spring:
     driver-class-name: com.mysql.cj.jdbc.Driver
     url: jdbc:mysql://localhost:3306/stock_example
     username: root
-    password: 1234
+    password: oo09
     hikari:
       maximum-pool-size: 40 # for namedLocking
 logging:

@@ -1,6 +1,7 @@
 package com.yoon.facade;
 
 import com.yoon.service.ItemService;
+import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
 import org.springframework.stereotype.Component;
@@ -8,15 +9,11 @@ import org.springframework.stereotype.Component;
 import java.util.concurrent.TimeUnit;
 
 @Component
+@RequiredArgsConstructor
 public class RedissonLockStockFacade {
 
     private final RedissonClient redissonClient;
     private final ItemService stockService;
-
-    public RedissonLockStockFacade(RedissonClient redissonClient, ItemService itemService) {
-        this.redissonClient = redissonClient;
-        this.stockService = itemService;
-    }
 
     public void decrease(Long id, Long quantity){
         RLock lock = redissonClient.getLock(id.toString());
