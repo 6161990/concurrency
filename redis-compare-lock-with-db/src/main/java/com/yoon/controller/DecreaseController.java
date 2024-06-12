@@ -1,6 +1,6 @@
 package com.yoon.controller;
 
-import com.yoon.facade.OptimisticLockService;
+import com.yoon.facade.LockService;
 import com.yoon.facade.RedissonLockStockFacade;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
@@ -14,12 +14,12 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/api")
 @RequiredArgsConstructor
 public class DecreaseController {
-    private final OptimisticLockService optimisticLockService;
+    private final LockService lockService;
     private final RedissonLockStockFacade redissonLockStockFacade;
 
-    @PostMapping("/optimistic/decrease")
+    @PostMapping("/decrease")
     public ResponseEntity<HttpStatus> decrease2() {
-        optimisticLockService.decrease(1L, 1L);
+        lockService.decrease3(1L, 1L);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 

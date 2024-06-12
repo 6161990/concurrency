@@ -1,2 +1,2 @@
-### optimistic test
-POST http://localhost:8080/api/optimistic/decrease
+### test
+POST http://localhost:8080/api/decrease
