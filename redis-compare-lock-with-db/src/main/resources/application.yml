@@ -15,8 +15,10 @@ logging:
   level:
     org:
       hibernate:
-        SQL: DEBUG
+        SQL: ERROR
         type:
           descriptor:
             sql:
-              BasicBinder: TRACE
+              BasicBinder: ERROR
+    org.springframework.transaction.interceptor.TransactionInterceptor: TRACE
+    org.redisson: DEBUG
