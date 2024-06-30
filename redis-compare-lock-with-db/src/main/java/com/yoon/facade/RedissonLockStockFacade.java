@@ -5,8 +5,12 @@ import com.yoon.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
 import org.redisson.api.RedissonClient;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.event.EventListener;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.transaction.event.TransactionPhase;
+import org.springframework.transaction.event.TransactionalEventListener;
 
 import java.util.concurrent.TimeUnit;
 
@@ -16,12 +20,13 @@ public class RedissonLockStockFacade {
 
     private final RedissonClient redissonClient;
     private final ItemRepository itemRepository;
+    private final ApplicationEventPublisher applicationEventPublisher;
 
     @Transactional
     public void decrease(Long id, Long quantity) {
         RLock lock = redissonClient.getLock(id.toString());
         try {
-            if (lock.tryLock(5000,3000, TimeUnit.MILLISECONDS)) {
+            if (lock.tryLock(5000, 3000, TimeUnit.MILLISECONDS)) {
                 Item item = itemRepository.findById(id).orElseThrow();
                 item.decrease(quantity);
                 itemRepository.save(item);
@@ -32,8 +37,14 @@ public class RedissonLockStockFacade {
             throw new RuntimeException(e);
         } finally {
             if (lock.isLocked() && lock.isHeldByCurrentThread()) {
-                lock.unlock();
+                applicationEventPublisher.publishEvent(lock);
             }
         }
+    }
+
+    @EventListener
+    @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
+    public void releaseLock(RLock lock) {
+        lock.unlock();
     }
 }
