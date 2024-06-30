@@ -24,9 +24,9 @@ public class DecreaseController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
-    @PostMapping("/redission/decrease/{quantity}")
-    public ResponseEntity<HttpStatus> decrease(@PathVariable Long quantity) {
-        redissonLockStockFacade.decrease(1L, quantity);
+    @PostMapping("/redission/decrease")
+    public ResponseEntity<HttpStatus> decrease(){
+        redissonLockStockFacade.decrease(1L, 1L);
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 

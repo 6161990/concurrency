@@ -25,26 +25,30 @@ public class RedissonLockStockFacade {
     @Transactional
     public void decrease(Long id, Long quantity) {
         RLock lock = redissonClient.getLock(id.toString());
+        boolean lockAcquired = false;
         try {
-            if (lock.tryLock(5000, 3000, TimeUnit.MILLISECONDS)) {
+            lockAcquired = lock.tryLock(5000, 3000, TimeUnit.MILLISECONDS);
+            if (lockAcquired) {
                 Item item = itemRepository.findById(id).orElseThrow();
                 item.decrease(quantity);
                 itemRepository.save(item);
+
+                applicationEventPublisher.publishEvent(lock);
             } else {
-                throw new RuntimeException();
+                throw new RuntimeException("Failed to acquire lock");
             }
         } catch (InterruptedException e) {
             throw new RuntimeException(e);
-        } finally {
-            if (lock.isLocked() && lock.isHeldByCurrentThread()) {
-                applicationEventPublisher.publishEvent(lock);
-            }
         }
     }
 
     @EventListener
     @TransactionalEventListener(phase = TransactionPhase.AFTER_COMMIT)
     public void releaseLock(RLock lock) {
-        lock.unlock();
+        if (lock.isLocked() && lock.isHeldByCurrentThread()) {
+            lock.unlock();
+        }
     }
+
 }
+

@@ -14,13 +14,12 @@ public class Item {
 
     private Long quantity;
 
-    @Version
     private Long version;
 
     public void decrease(Long quantity) {
-//        if(this.quantity - quantity < 0){
-//            throw new RuntimeException("재고는 0 개 미만이 될 수 없습니다.");
-//        }
+        if(this.quantity - quantity < 0){
+            throw new RuntimeException("재고는 0 개 미만이 될 수 없습니다.");
+        }
 
         this.quantity -= quantity;
     }
