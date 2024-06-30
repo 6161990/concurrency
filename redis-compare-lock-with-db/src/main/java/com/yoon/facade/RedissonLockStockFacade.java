@@ -1,5 +1,7 @@
 package com.yoon.facade;
 
+import com.yoon.aop.RedLock;
+import com.yoon.domain.Item;
 import com.yoon.service.ItemService;
 import lombok.RequiredArgsConstructor;
 import org.redisson.api.RLock;
@@ -35,5 +37,10 @@ public class RedissonLockStockFacade {
             throw new RuntimeException(e);
         }
     }
+
+    public void decreaseAop(Long id, Long quantity) {
+        itemService.decreaseAop(id, quantity);
+    }
+
 }
 

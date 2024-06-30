@@ -30,4 +30,10 @@ public class DecreaseController {
         return ResponseEntity.status(HttpStatus.ACCEPTED).build();
     }
 
+    @PostMapping("/decrease-aop")
+    public ResponseEntity<HttpStatus> decreaseAop(){
+        redissonLockStockFacade.decreaseAop(1L, 1L);
+        return ResponseEntity.status(HttpStatus.ACCEPTED).build();
+    }
+
 }

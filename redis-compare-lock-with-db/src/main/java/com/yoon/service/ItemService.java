@@ -1,5 +1,6 @@
 package com.yoon.service;
 
+import com.yoon.aop.RedLock;
 import com.yoon.domain.Item;
 import com.yoon.repository.ItemRepository;
 import lombok.RequiredArgsConstructor;
@@ -19,6 +20,14 @@ public class ItemService {
 
         item.decrease(quantity);
 
+        itemRepository.save(item);
+    }
+
+    @Transactional
+    @RedLock(key = "#id")
+    public void decreaseAop(Long id, Long quantity) {
+        Item item = itemRepository.findById(id).orElseThrow();
+        item.decrease(quantity);
         itemRepository.save(item);
     }
 }
