@@ -2,9 +2,11 @@ package com.yoon.thread.join;
 
 import com.yoon.utils.LoggerLogger;
 
+import static com.yoon.utils.ThreadSleepUtils.sleep;
+
 public class WhyNeedJoinMain {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         LoggerLogger.log("main start.");
 
         SumValue task1 = new SumValue(1, 50);
@@ -16,11 +18,12 @@ public class WhyNeedJoinMain {
         thread1.start();
         thread2.start();
 
-        LoggerLogger.log("task1 start. sum = "+ task1.sumValue);
-        LoggerLogger.log("task2 start. sum = "+ task2.sumValue);
+        thread1.join(1000); // TIMED_WAITING
+        LoggerLogger.log("task1's " + task1.sumValue);
+        thread2.join(); // WAITING
+        LoggerLogger.log("task2's " + task2.sumValue);
 
         int sum = task1.sumValue + task2.sumValue;
-
         LoggerLogger.log("main end. sum = " + sum);
     }
 
@@ -36,16 +39,10 @@ public class WhyNeedJoinMain {
 
         @Override
         public void run() {
-            LoggerLogger.log("Sum start");
-            try {
-                for (int i = startValue; i <= endValue; i++) {
-                    sumValue += i;
-                }
-                Thread.sleep(2000);
-            } catch (InterruptedException e) {
-                throw new RuntimeException(e);
+            sleep(2000);
+            for (int i = startValue; i <= endValue; i++) {
+                sumValue += i;
             }
-            LoggerLogger.log("Sum ending. sum is " + sumValue);
         }
     }
 }
