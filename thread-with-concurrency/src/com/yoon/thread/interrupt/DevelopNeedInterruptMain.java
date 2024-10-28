@@ -23,8 +23,17 @@ public class DevelopNeedInterruptMain {
         public void run() {
             while (!Thread.currentThread().isInterrupted()) {
                 log("working...");
-                log("isInterrupted? " + Thread.currentThread().isInterrupted());
                 log("now state? " + Thread.currentThread().getState());
+                log("isInterrupted? " + Thread.currentThread().isInterrupted());
+            }
+
+            try {
+                log("자원정리 시작");
+                Thread.sleep(50); // interrupt 상태를 제대로 정리하지 않으면 여기서 InterruptedException 이 발생해서 하위 코드에 영향을 줌
+                log("자원정리 끝");
+            } catch (InterruptedException e) {
+                log("InterruptedException 자원정리 실패");
+                log("isInterrupted? " + Thread.currentThread().isInterrupted());
             }
         }
     }
