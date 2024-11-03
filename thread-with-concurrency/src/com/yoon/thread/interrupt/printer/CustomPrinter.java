@@ -20,7 +20,6 @@ public class CustomPrinter {
             String nextLine = scanner.nextLine();
             if (nextLine.equals("q")) {
                 thread.interrupt();
-                printer.work = false;
                 break;
             }
             printer.addJob(nextLine);
@@ -28,12 +27,11 @@ public class CustomPrinter {
     }
 
     static class Printer implements Runnable {
-        volatile boolean work = true;
         Queue<String> jobList = new ConcurrentLinkedDeque<>();
 
         @Override
         public void run() {
-            while (work) {
+            while (!Thread.interrupted()) {
                 if (jobList.isEmpty()) {
                     continue;
                 }
