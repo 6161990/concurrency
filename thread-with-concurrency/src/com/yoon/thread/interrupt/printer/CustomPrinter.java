@@ -19,6 +19,7 @@ public class CustomPrinter {
             log("Please Enter question. Nothing, input 'q'.");
             String nextLine = scanner.nextLine();
             if (nextLine.equals("q")) {
+                thread.interrupt();
                 printer.work = false;
                 break;
             }
@@ -37,10 +38,15 @@ public class CustomPrinter {
                     continue;
                 }
 
-                log("printing start");
-                log(jobList.poll());
-                sleep(4000);
-                log("printing .. remain list" + jobList);
+                try {
+                    log("printing start");
+                    log(jobList.poll());
+                    Thread.sleep(4000);
+                    log("printing .. remain list" + jobList);
+                } catch (InterruptedException e) {
+                    log("InterruptedException");
+                    break;
+                }
             }
             log("printing end");
         }
