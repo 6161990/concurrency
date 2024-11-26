@@ -12,9 +12,9 @@ public class ThreadState {
         log("MainThread's state " + Thread.currentThread().getState()); // main RUNNABLE
         thread.start();
         sleep(1000);
-        log("ThreadStateImpl's state " + thread.getState()); // TIMED_WAITING
+        log("ThreadStateImpl's state " + thread.getState());
         sleep(4000);
-        log("ThreadStateImpl's state " + thread.getState()); // TERMINATED
+        log("ThreadStateImpl's state " + thread.getState());
         log("MainThread's state " + Thread.currentThread().getState()); // main RUNNABLE
     }
 

@@ -18,10 +18,10 @@ public class WhyNeedJoinMain {
         thread1.start();
         thread2.start();
 
-        thread1.join(1000); // TIMED_WAITING
-        LoggerLogger.log("task1's " + task1.sumValue);
+        thread1.join(3000); // TIMED_WAITING
+        LoggerLogger.log("task1's " + task1.sumValue + ", state=" + thread1.getState());
         thread2.join(); // WAITING
-        LoggerLogger.log("task2's " + task2.sumValue);
+        LoggerLogger.log("task2's " + task2.sumValue + ", state=" + thread2.getState());
 
         int sum = task1.sumValue + task2.sumValue;
         LoggerLogger.log("main end. sum = " + sum);
@@ -43,6 +43,7 @@ public class WhyNeedJoinMain {
             for (int i = startValue; i <= endValue; i++) {
                 sumValue += i;
             }
+            LoggerLogger.log(Thread.currentThread().getName() + ", state=" + Thread.currentThread().getState());
         }
     }
 }
