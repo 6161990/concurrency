@@ -1,12 +1,12 @@
 package com.yoon.repository;
 
 import com.yoon.domain.Item;
+import jakarta.persistence.LockModeType;
+import jakarta.persistence.QueryHint;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Lock;
 import org.springframework.data.jpa.repository.QueryHints;
 
-import javax.persistence.LockModeType;
-import javax.persistence.QueryHint;
 import java.util.Optional;
 
 public interface ItemRepository extends JpaRepository<Item, Long> {

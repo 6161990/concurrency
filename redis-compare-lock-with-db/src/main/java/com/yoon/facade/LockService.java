@@ -2,12 +2,12 @@ package com.yoon.facade;
 
 import com.yoon.domain.Item;
 import com.yoon.repository.ItemRepository;
+import jakarta.persistence.EntityManager;
+import jakarta.persistence.LockModeType;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import javax.persistence.EntityManager;
-import javax.persistence.LockModeType;
 
 @Service
 @RequiredArgsConstructor
