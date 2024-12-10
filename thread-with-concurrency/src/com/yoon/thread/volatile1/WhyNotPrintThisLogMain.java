@@ -25,7 +25,9 @@ public class WhyNotPrintThisLogMain {
         public void run() {
             log("WhyNotPrintThisLogTask start");
             while (trigger) {
-
+                // 여기에 System.out.println(); 으로 찍으면 출력하는 동안 스레드가 잠깐 대기상태로 바껴서 컨텍스트 스위칭이 발생할 수 있다.
+                // 그때는 아래 log 가 찍힌다.
+                // 근데 이건 항상 보장되는게 아니라는 점~~~~~~~~~~!
             }
             log("WhyNotPrintThisLog...??????");
             log("because of memory volatile");
