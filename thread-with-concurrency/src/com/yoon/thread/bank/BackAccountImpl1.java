@@ -13,17 +13,16 @@ public class BackAccountImpl1 implements BankAccount {
 
     @Override
     public boolean withdraw(int amount) {
-        log("거래 시작 : " + getClass().getSimpleName());
+        log(getClass().getSimpleName() + " [거래 시작] balance=" + balance);
 
         if (balance < amount) {
-            log("거래 실패 balance=" + balance + ", amount=" + amount);
+            log("[거래 실패] amount=" + amount);
             return false;
         }
 
-        log("검증완료 balance=" + balance + ", amount=" + amount);
         sleep(1000);
         balance = balance - amount;
-        log("출금완료 balance=" + balance + ", amount=" + amount);
+        log("[거래 및 출금 완료] amount=" + amount + ", balance=" + balance);
         return true;
     }
 
