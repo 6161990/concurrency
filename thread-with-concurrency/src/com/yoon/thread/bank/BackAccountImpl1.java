@@ -22,7 +22,7 @@ public class BackAccountImpl1 implements BankAccount {
 
         sleep(1000);
         balance = balance - amount;
-        log("[거래 및 출금 완료] amount=" + amount + ", balance=" + balance);
+        log("[거래 및 출  완료] amount=" + amount + ", balance=" + balance);
         return true;
     }
 

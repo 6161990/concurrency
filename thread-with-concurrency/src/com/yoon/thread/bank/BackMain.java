@@ -11,6 +11,8 @@ public class BackMain {
         Thread thread1 = new Thread(new WithdrawTask(account, 800), "thread1");
         Thread thread2 = new Thread(new WithdrawTask(account, 800), "thread2");
         log("공유자원을 각 스레드에서 접근할 때 동시성 이슈를 확인해볼거야");
+        log("이건 단순 캐시 문제가 아니야. 메모리 가시성 문제를 뛰어넘는 이슈가 있어");
+        log("volatile 로 공유자원을 세팅해도 문제는 동일하더라고");
 
         thread1.start();
         thread2.start();
