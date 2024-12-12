@@ -6,9 +6,11 @@ import static com.yoon.utils.ThreadSleepUtils.sleep;
 public class BackMain {
     public static void main(String[] args) throws InterruptedException {
 //        BankAccount account = new BackAccountImpl1(1000);
-        BankAccount account = new BackAccountImpl2(1000);
+//        BankAccount account = new BackAccountImpl2(1000);
+        BankAccount account = new BackAccountImpl3(1000);
         log("BankAccount 가 여기서 공유자원임.");
         log("synchronized 를 사용하면 잘 돼.");
+        log("synchronized 블록을 사용하면 약간의 성능이 나아질수도");
 
         Thread thread1 = new Thread(new WithdrawTask(account, 800), "thread1");
         Thread thread2 = new Thread(new WithdrawTask(account, 800), "thread2");
