@@ -1,4 +1,4 @@
-package com.yoon.thread.bank;
+package com.yoon.thread.concurrency.bank;
 
 import static com.yoon.utils.LoggerLogger.log;
 import static com.yoon.utils.ThreadSleepUtils.sleep;

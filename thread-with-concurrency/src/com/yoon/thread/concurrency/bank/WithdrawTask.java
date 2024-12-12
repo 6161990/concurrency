@@ -1,4 +1,4 @@
-package com.yoon.thread.bank;
+package com.yoon.thread.concurrency.bank;
 
 public class WithdrawTask implements Runnable{
 
