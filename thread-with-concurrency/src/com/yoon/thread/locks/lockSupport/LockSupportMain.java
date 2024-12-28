@@ -1,4 +1,4 @@
-package com.yoon.thread.park;
+package com.yoon.thread.locks.lockSupport;
 
 import java.util.concurrent.locks.LockSupport;
 
@@ -11,7 +11,7 @@ import static com.yoon.utils.ThreadSleepUtils.sleep;
  * 스레드를 WAITING 상태로 바꿔주는 기능 : sleep, join, wait 처럼!
  * 주요 기능 1.park 2.unpark -> 다시 RUNNABLE 상태로 전환하는 기능 : interrupt 처럼! but, isInterrupted 는 아님
  * */
-public class ParkMain {
+public class LockSupportMain {
     public static void main(String[] args) {
         Thread parkThread = new Thread(new ParkThread(), "parkThread");
         parkThread.start();
