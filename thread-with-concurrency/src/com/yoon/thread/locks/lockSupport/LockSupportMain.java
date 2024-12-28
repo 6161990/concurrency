@@ -18,8 +18,8 @@ public class LockSupportMain {
 
         sleep(100);
         log("parkThread state : " + parkThread.getState());
-        log("---- parkThread unpark !");
-        LockSupport.unpark(parkThread);
+//        log("---- parkThread unpark !");
+//        LockSupport.unpark(parkThread);
         log("---- parkThread interrupt !");
         parkThread.interrupt();
     }
