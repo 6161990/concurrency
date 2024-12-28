@@ -14,7 +14,7 @@ public class UseInterruptMain {
         sleep(100);
         log("interrupt working --------- 작업 중단 지시 ");
         thread.interrupt();
-        log("isInterrupted?" + thread.isInterrupted());
+        log("isInterrupted? " + thread.isInterrupted());
     }
 
     static class WhyUseInterrupted implements Runnable {

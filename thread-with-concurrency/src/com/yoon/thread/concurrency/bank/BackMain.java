@@ -25,7 +25,7 @@ public class BackMain {
 
         sleep(500);
         log("thread1" + thread1.getState());
-        log("thread2" + thread2.getState()); // thread1 이 lock 을 점유하고 있어서 BLOCKED 상태로 됨
+        log("thread2" + thread2.getState()); // thread1 이 lock 을 점유하고 있어서 BLOCKED 상태로 됨. interrupted 를 해도 RUNNABLE 상태로 전이 되지 않음
 
 
         thread1.join();

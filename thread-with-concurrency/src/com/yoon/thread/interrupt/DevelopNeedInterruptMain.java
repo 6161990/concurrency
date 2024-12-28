@@ -29,7 +29,7 @@ public class DevelopNeedInterruptMain {
 
             try {
                 log("자원정리 시작");
-                Thread.sleep(50); // interrupt 상태를 제대로 정리하지 않으면 여기서 InterruptedException 이 발생해서 하위 코드에 영향을 줌
+                Thread.sleep(50); // interrupt 상태를 제대로 정리하지 않으면 ( = thread 가 이미 isInterrupted 인데) 여기서 스레드를 잠재워버리면 InterruptedException 이 발생해서 하위 코드에 영향을 줌
                 log("자원정리 끝");
             } catch (InterruptedException e) {
                 log("InterruptedException 자원정리 실패");
