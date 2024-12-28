@@ -1,4 +1,6 @@
-package com.yoon.thread.concurrency.bank;
+package com.yoon.thread.concurrency.bank.synchronized1;
+
+import com.yoon.thread.concurrency.bank.BankAccount;
 
 import static com.yoon.utils.LoggerLogger.log;
 import static com.yoon.utils.ThreadSleepUtils.sleep;

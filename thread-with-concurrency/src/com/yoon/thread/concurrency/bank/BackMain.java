@@ -1,5 +1,7 @@
 package com.yoon.thread.concurrency.bank;
 
+import com.yoon.thread.concurrency.bank.synchronized1.BackAccountImpl3;
+
 import static com.yoon.utils.LoggerLogger.log;
 import static com.yoon.utils.ThreadSleepUtils.sleep;
 
@@ -23,7 +25,7 @@ public class BackMain {
 
         sleep(500);
         log("thread1" + thread1.getState());
-        log("thread2" + thread2.getState());
+        log("thread2" + thread2.getState()); // thread1 이 lock 을 점유하고 있어서 BLOCKED 상태로 됨
 
 
         thread1.join();
