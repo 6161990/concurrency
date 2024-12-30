@@ -1,6 +1,9 @@
 package com.yoon.thread.concurrency.bank;
 
 import com.yoon.thread.concurrency.bank.synchronized1.BackAccountImpl3;
+import com.yoon.thread.concurrency.bank.synchronized1.BackAccountImpl4;
+import com.yoon.thread.concurrency.bank.synchronized1.BackAccountImpl5;
+import com.yoon.thread.concurrency.bank.synchronized1.BackAccountImpl6;
 
 import static com.yoon.utils.LoggerLogger.log;
 import static com.yoon.utils.ThreadSleepUtils.sleep;
@@ -9,7 +12,10 @@ public class BackMain {
     public static void main(String[] args) throws InterruptedException {
 //        BankAccount account = new BackAccountImpl1(1000);
 //        BankAccount account = new BackAccountImpl2(1000);
-        BankAccount account = new BackAccountImpl3(1000);
+//        BankAccount account = new BackAccountImpl3(1000);
+//        BankAccount account = new BackAccountImpl4(1000);
+//        BankAccount account = new BackAccountImpl5(1000);
+        BankAccount account = new BackAccountImpl6(1000);
         log("BankAccount 가 여기서 공유자원임.");
         log("synchronized 를 사용하면 잘 돼.");
         log("synchronized 블록을 사용하면 약간의 성능이 나아질수도");
