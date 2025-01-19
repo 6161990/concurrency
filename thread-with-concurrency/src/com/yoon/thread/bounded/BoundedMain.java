@@ -9,10 +9,11 @@ public class BoundedMain {
 
     public static void main(String[] args) {
 //        BoundedQueue queue = new BoundedQueueImpl1(2);
-        BoundedQueue queue = new BoundedQueueImpl2(2);
+//        BoundedQueue queue = new BoundedQueueImpl2(2);
+        BoundedQueue queue = new BoundedQueueImpl3(2);
 
-//      producingFirst(queue);
-        consumerFirst(queue);
+      producingFirst(queue);
+//        consumerFirst(queue);
 
     }
 
