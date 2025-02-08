@@ -16,7 +16,8 @@ import static com.yoon.utils.LoggerLogger.log;
 public class BoundedQueueImpl4 implements BoundedQueue {
 
     private final Lock lock = new ReentrantLock();
-    private final Condition condition = lock.newCondition();
+    private final Condition produceCondition = lock.newCondition();
+    private final Condition consumeCondition = lock.newCondition();
 
     private final Queue<String> arrayDeque = new ArrayDeque<>();
     private final int max;
@@ -32,14 +33,14 @@ public class BoundedQueueImpl4 implements BoundedQueue {
             while (arrayDeque.size() == max) {
                 log("BoundedQueueImpl4's Queue full. waiting.. " + value);
                 try {
-                    condition.await();
+                    produceCondition.await();
                     log("생산자 깨어남");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
             arrayDeque.offer(value);
-            condition.signal();
+            consumeCondition.signal();
             log("생산자 알림");
         } finally {
             lock.unlock();
@@ -54,14 +55,14 @@ public class BoundedQueueImpl4 implements BoundedQueue {
             while (arrayDeque.isEmpty()) {
                 log("BoundedQueueImpl4's Queue empty. waiting.. ");
                 try {
-                    condition.await();
+                    consumeCondition.await();
                     log("소비자 대기");
                 } catch (InterruptedException e) {
                     throw new RuntimeException(e);
                 }
             }
             String poll = arrayDeque.poll();
-            condition.signal();
+            produceCondition.signal();
             log("소비자 알림");
             return poll;
         } finally {
