@@ -22,7 +22,7 @@ public class BoundedQueueImpl3 implements BoundedQueue{
     @Override
     public synchronized void put(String value) {
         while (arrayDeque.size() == max){
-            log("BoundedQueueImpl2's Queue full. waiting.. "+value);
+            log("BoundedQueueImpl3's Queue full. waiting.. "+value);
             try {
                 wait(); // RUNNABLE -> WAITING + 락 반납
                 log("생산자 깨어남");
@@ -39,7 +39,7 @@ public class BoundedQueueImpl3 implements BoundedQueue{
     @Override
     public synchronized String take() {
         while (arrayDeque.isEmpty()){
-            log("BoundedQueueImpl2's Queue empty. waiting.. ");
+            log("BoundedQueueImpl3's Queue empty. waiting.. ");
             try {
                 wait(); // RUNNABLE -> WAITING + 락 반납
                 log("소비자 대기");
