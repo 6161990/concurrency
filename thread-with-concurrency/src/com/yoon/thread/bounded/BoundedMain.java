@@ -12,7 +12,9 @@ public class BoundedMain {
 //        BoundedQueue queue = new BoundedQueueImpl2(2);
 //        BoundedQueue queue = new BoundedQueueImpl3(2);
 //        BoundedQueue queue = new BoundedQueueImpl4(2);
-        BlockedQueueImpl queue = new BlockedQueueImpl(2);
+//        BlockedQueueImpl1 queue = new BlockedQueueImpl1(2);
+//        BlockedQueueImpl2 queue = new BlockedQueueImpl2(2);
+        BlockedQueueImpl4 queue = new BlockedQueueImpl4(2);
 
       producingFirst(queue);
 //        consumerFirst(queue);
