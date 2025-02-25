@@ -10,8 +10,8 @@ public class IncrementIntegerMain {
     private static final int THREAD_HOLDS = 1000;
 
     public static void main(String[] args) {
-        BasicIncrementInteger basicIncrementInteger = new BasicIncrementInteger();
-        test(basicIncrementInteger);
+        test(new BasicIncrementInteger());
+        test(new VolatileIncrementInteger());
     }
 
     private static void test(IncrementInteger incrementInteger) {
