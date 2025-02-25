@@ -13,6 +13,7 @@ public class IncrementIntegerMain {
         test(new BasicIncrementInteger());
         test(new VolatileIncrementInteger());
         test(new SynchronizedIncrementInteger());
+        test(new AtomicIncrementInteger());
     }
 
     private static void test(IncrementInteger incrementInteger) throws InterruptedException {
