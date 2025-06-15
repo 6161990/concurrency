@@ -19,7 +19,7 @@ public class CallableMainV1 {
         ExecutorUtils.printState(es);
     }
 
-    static class CallableTask implements Callable<Integer> {
+    public static class CallableTask implements Callable<Integer> {
 
         @Override
         public Integer call() throws Exception {
