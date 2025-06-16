@@ -19,7 +19,6 @@ public abstract class ExecutorUtils {
         }
     }
 
-    // 추가
     public static void printState(ExecutorService executorService, String taskName) {
         if (executorService instanceof ThreadPoolExecutor poolExecutor) {
             int pool = poolExecutor.getPoolSize();
